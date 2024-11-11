@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Certificate Verification Result{% endblock %}
+
+{% block content %}
+<div class="container mx-auto py-10 px-4">
+    <div class="verification-result bg-sci-dark text-sci-gray border border-sci-green rounded-lg shadow-lg p-8 max-w-lg mx-auto text-center">
+        <h1 class="text-3xl font-bold text-sci-green mb-6">
+            {% if status == 'success' %}✅ Certificate Verified{% else %}❌ Verification Failed{% endif %}
+        </h1>
+
+        <p class="text-lg">
+            {% if status == 'success' %}
+                <span class="font-semibold">Holder Name:</span> {{ holder_name }}<br>
+                <span class="font-semibold">Issue Date:</span> {{ issue_date }}<br>
+                <span class="font-semibold">Expiration Date:</span> {{ expiration_date }}
+            {% else %}
+                {{ message }}
+            {% endif %}
+        </p>
+
+        <a href="{% url 'verify_certificate' %}" class="mt-6 inline-block bg-sci-green text-sci-dark font-semibold py-3 px-6 rounded-md hover:bg-opacity-90 transition">
+            Verify Another Certificate
+        </a>
+    </div>
+</div>
+{% endblock %}

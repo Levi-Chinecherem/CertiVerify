@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Verify Certificate - CertiVerify{% endblock %}
+
+{% block content %}
+<div class="container mx-auto py-10 px-4">
+    <div class="verification-box bg-sci-dark text-sci-gray border border-sci-green rounded-lg shadow-lg p-8 max-w-lg mx-auto text-center">
+        <h1 class="text-3xl font-bold text-sci-green mb-6">Certificate Verification</h1>
+
+        <form action="{% url 'verify_certificate' %}" method="post" enctype="multipart/form-data" class="space-y-6">
+            {% csrf_token %}
+            
+            <label for="certificate_image" class="block text-lg font-medium text-sci-gray">Upload Certificate Image (with QR Code/Barcode):</label>
+            <input type="file" name="certificate_image" id="certificate_image" required
+                   class="w-full p-3 bg-sci-darker border border-sci-green rounded-md text-sci-gray focus:outline-none focus:ring-2 focus:ring-sci-green">
+            
+            <button type="submit"
+                    class="mt-4 w-full bg-sci-green text-sci-dark font-semibold py-3 rounded-md hover:bg-opacity-90 transition">
+                Verify
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}

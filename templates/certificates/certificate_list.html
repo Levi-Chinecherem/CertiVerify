@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %}Your Certificates - CertiVerify{% endblock %}
+
+{% block content %}
+<div class="py-8 relative">
+    <h2 class="text-3xl text-sci-green font-bold mb-6">All Certificates</h2>
+    <table class="min-w-full bg-sci-dark text-sci-gray border border-sci-green">
+        <thead>
+            <tr>
+                <th class="py-2 px-4 border-b border-sci-green">Holder Name</th>
+                <th class="py-2 px-4 border-b border-sci-green">Certificate ID</th>
+                <th class="py-2 px-4 border-b border-sci-green">Issue Date</th>
+                <th class="py-2 px-4 border-b border-sci-green">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for certificate in certificates %}
+            <tr class="text-center hover:bg-sci-dark/80">
+                <td class="py-2 px-4 border-b border-sci-green">{{ certificate.holder_name }}</td>
+                <td class="py-2 px-4 border-b border-sci-green">{{ certificate.certificate_id }}</td>
+                <td class="py-2 px-4 border-b border-sci-green">{{ certificate.issue_date }}</td>
+                <td class="py-2 px-4 border-b border-sci-green">
+                    <a href="{% url 'download_certificate' certificate.certificate_id %}" class="download-link text-sci-green hover:text-sci-gray">Download</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Loader Overlay -->
+    <div id="loader" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-16 w-16"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+/* Loader Styles */
+.loader {
+  border-top-color: #4ade80; /* Tailwind's sci-green */
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const downloadLinks = document.querySelectorAll('.download-link');
+    const loader = document.getElementById('loader');
+
+    downloadLinks.forEach(function(link) {
+        link.addEventListener('click', function(event) {
+            // Show the loader
+            loader.classList.remove('hidden');
+
+            // Optionally, hide the loader after a certain time
+            // Adjust the timeout as needed (e.g., 5 seconds)
+            setTimeout(function() {
+                loader.classList.add('hidden');
+            }, 5000);
+        });
+    });
+});
+</script>
+{% endblock %}

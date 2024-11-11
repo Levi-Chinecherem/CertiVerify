@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Certificate - CertiVerify{% endblock %}
+
+{% block content %}
+<div class="certificate-container bg-sci-dark text-sci-gray mx-auto my-10 p-8 border border-sci-green rounded-lg shadow-lg max-w-3xl text-center">
+    <h1 class="certificate-title text-4xl font-bold text-sci-green mb-4">Certificate of Completion</h1>
+    <p class="text-lg text-sci-gray mb-2">This certificate is proudly presented to</p>
+    <h2 class="holder-name text-2xl font-semibold text-white mb-6">{{ certificate.holder_name }}</h2>
+    
+    <div class="certificate-details text-lg mb-4">
+        <p class="mb-2">Certificate ID: <span class="text-sci-green">{{ certificate.certificate_id }}</span></p>
+        <p class="mb-2">Issue Date: <span class="text-sci-green">{{ certificate.issue_date }}</span></p>
+        {% if certificate.expiration_date %}
+            <p class="mb-2">Expiration Date: <span class="text-sci-green">{{ certificate.expiration_date }}</span></p>
+        {% endif %}
+        <p class="note italic text-sci-gray mt-4">{{ certificate.note }}</p>
+    </div>
+
+    {% if certificate.logo %}
+        <div class="certificate-logo-container my-6">
+            <img src="{{ certificate.logo.url }}" class="certificate-logo mx-auto" alt="Certificate Logo">
+        </div>
+    {% endif %}
+
+    {% if certificate.qr_code_image %}
+        <div class="qr-code-container my-6">
+            <img src="{{ certificate.qr_code_image.url }}" class="qr-code mx-auto" alt="QR Code">
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

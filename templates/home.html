@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - CertiVerify{% endblock %}
+
+{% block content %}
+<div class="text-center py-12">
+    <h1 class="text-5xl font-bold text-sci-green mb-6 animate-fade-in">Welcome to CertiVerify</h1>
+    <p class="text-lg text-sci-gray mb-8 animate-fade-in-delay">Your trusted source for authenticating certificates in a futuristic style.</p>
+    
+    <a href="{% url 'certificate_list' %}" 
+       class="bg-sci-green text-sci-dark px-6 py-3 rounded hover:bg-opacity-90 transition duration-300 animate-bounce-in">
+        View Certificates
+    </a>
+</div>
+
+<!-- Section: Certificate Generation -->
+<section class="py-16 bg-sci-darker text-sci-gray">
+    <div class="container mx-auto px-4 text-center space-y-4">
+        <h2 class="text-3xl font-semibold text-sci-green animate-slide-up">Instant Certificate Generation</h2>
+        <p class="text-lg animate-fade-in">Generate professional certificates in seconds with custom designs and secure identification features.</p>
+    </div>
+</section>
+
+<!-- Section: Secure Verification -->
+<section class="py-16 bg-sci-dark text-sci-gray">
+    <div class="container mx-auto px-4 text-center space-y-4">
+        <h2 class="text-3xl font-semibold text-sci-green animate-slide-up">Robust Verification System</h2>
+        <p class="text-lg animate-fade-in">Ensure authenticity with our built-in QR code and barcode scanning. Verify certificates with ease and confidence.</p>
+    </div>
+</section>
+
+<!-- Section: User Dashboard -->
+<section class="py-16 bg-sci-darker text-sci-gray">
+    <div class="container mx-auto px-4 text-center space-y-4">
+        <h2 class="text-3xl font-semibold text-sci-green animate-slide-up">User-Friendly Dashboard</h2>
+        <p class="text-lg animate-fade-in">Easily manage and access all your certificates from one place, with downloadable options and real-time status updates.</p>
+    </div>
+</section>
+
+<!-- Section: Downloadable Certificates -->
+<section class="py-16 bg-sci-dark text-sci-gray">
+    <div class="container mx-auto px-4 text-center space-y-4">
+        <h2 class="text-3xl font-semibold text-sci-green animate-slide-up">Downloadable & Portable</h2>
+        <p class="text-lg animate-fade-in">Get downloadable PDFs of your certificates, designed with precision and style, ready for use or verification at any time.</p>
+    </div>
+</section>
+
+<!-- Section: Footer Call-to-Action -->
+<div class="text-center py-12 bg-sci-darker">
+    <p class="text-sci-gray mb-6">Ready to start verifying?</p>
+    <a href="{% url 'verify_certificate' %}" 
+       class="bg-sci-green text-sci-dark px-6 py-3 rounded hover:bg-opacity-90 transition duration-300 animate-bounce-in">
+        Verify Now
+    </a>
+</div>
+{% endblock %}
